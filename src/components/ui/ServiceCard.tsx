@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { Check } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -22,6 +23,10 @@ export default function ServiceCard({
     image,
     badge,
 }: ServiceCardProps) {
+    const { lang } = useParams();
+    const currentLang = lang || 'fr';
+    const lp = (path: string) => `/${currentLang}${path}`;
+
     return (
         <div className="group card-premium rounded-lg overflow-hidden h-full flex flex-col">
             {/* Image Section */}
@@ -73,12 +78,12 @@ export default function ServiceCard({
                 </ul>
 
                 {/* CTA */}
-                <a
-                    href={href}
+                <Link
+                    to={lp(href)}
                     className="inline-flex items-center justify-center gap-2 w-full py-3 border border-brand-gold/30 text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 rounded-sm text-sm font-medium"
                 >
                     {ctaText}
-                </a>
+                </Link>
             </div>
         </div>
     );

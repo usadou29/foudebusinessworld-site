@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
     Building2, 
@@ -18,7 +19,7 @@ import SEOHead from '../components/SEOHead';
 // Assets
 const HERO_BG = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop";
 const DUBAI_IMG = "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop";
-const CHINA_IMG = "https://images.unsplash.com/photo-1547434316-24874b32187d?q=80&w=2070&auto=format&fit=crop";
+const CHINA_IMG = "https://images.unsplash.com/photo-1523741543316-beb7fc7023d8?q=80&w=2070&auto=format&fit=crop";
 const GEORGIA_IMG = "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=2066&auto=format&fit=crop";
 
 const services = [
@@ -32,7 +33,7 @@ const services = [
             "Compte bancaire dédié",
             "Support juridique continu"
         ],
-        href: "/services/company",
+        href: "/services",
         ctaText: "Créer ma société",
         image: DUBAI_IMG,
         badge: "Populaire"
@@ -47,7 +48,7 @@ const services = [
             "Contrôle qualité sur place",
             "Logistique clé en main"
         ],
-        href: "/services/sourcing",
+        href: "/services",
         ctaText: "Accéder aux fournisseurs",
         image: CHINA_IMG,
         badge: "Expert"
@@ -62,7 +63,7 @@ const services = [
             "Marketing digital complet",
             "Automatisation des process"
         ],
-        href: "/services/ecommerce",
+        href: "/services",
         ctaText: "Lancer mon e-commerce",
         image: GEORGIA_IMG
     }
@@ -92,6 +93,9 @@ const testimonials = [
 
 export default function Home() {
     useTranslation('common');
+    const { lang } = useParams();
+    const currentLang = lang || 'fr';
+    const lp = (path: string) => `/${currentLang}${path}`;
 
     return (
         <div className="bg-brand-dark min-h-screen text-white">
@@ -139,10 +143,10 @@ export default function Home() {
 
                             {/* CTA Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button variant="primary" size="lg" href="/contact">
+                                <Button variant="primary" size="lg" href={lp('/contact')}>
                                     Réserver un appel stratégique
                                 </Button>
-                                <Button variant="outline" size="lg" href="/services">
+                                <Button variant="outline" size="lg" href={lp('/services')}>
                                     Découvrir nos services
                                 </Button>
                             </div>
@@ -250,7 +254,7 @@ export default function Home() {
 
                     {/* CTA */}
                     <div className="text-center mt-12">
-                        <Button variant="outline" size="lg" href="/services">
+                        <Button variant="outline" size="lg" href={lp('/services')}>
                             Voir tous nos services
                             <ArrowRight className="w-4 h-4" />
                         </Button>
@@ -402,10 +406,10 @@ export default function Home() {
                         et vous donnons un plan d'action concret pour développer votre business international.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button variant="primary" size="lg" href="/contact">
+                        <Button variant="primary" size="lg" href={lp('/contact')}>
                             Réserver mon appel gratuit
                         </Button>
-                        <Button variant="outline" size="lg" href="/services">
+                        <Button variant="outline" size="lg" href={lp('/services')}>
                             Explorer nos services
                         </Button>
                     </div>

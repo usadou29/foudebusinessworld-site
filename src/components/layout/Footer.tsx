@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { 
     Mail, 
     Phone, 
@@ -11,10 +11,10 @@ import {
 
 const footerLinks = {
     services: [
-        { label: 'Création société', href: '/services/company' },
-        { label: 'Sourcing Chine', href: '/services/sourcing' },
-        { label: 'Canton Fair', href: '/services/canton' },
-        { label: 'E-commerce', href: '/services/ecommerce' },
+        { label: 'Création société', href: '/services' },
+        { label: 'Sourcing Chine', href: '/services' },
+        { label: 'Canton Fair', href: '/services' },
+        { label: 'E-commerce', href: '/services' },
         { label: 'Formations', href: '/courses' },
     ],
     countries: [
@@ -37,6 +37,9 @@ const footerLinks = {
 };
 
 export default function Footer() {
+    const { lang } = useParams();
+    const currentLang = lang || 'fr';
+    const lp = (path: string) => `/${currentLang}${path}`;
     const currentYear = new Date().getFullYear();
 
     return (
@@ -76,7 +79,7 @@ export default function Footer() {
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
                     {/* Brand Column */}
                     <div className="col-span-2 md:col-span-4 lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-3 mb-6">
+                        <Link to={lp('/')} className="flex items-center gap-3 mb-6">
                             <img
                                 src="/assets/logo.png"
                                 alt="FouDeBusinessWorld"
@@ -112,7 +115,7 @@ export default function Footer() {
                             {footerLinks.services.map((link, idx) => (
                                 <li key={idx}>
                                     <Link
-                                        to={link.href}
+                                        to={lp(link.href)}
                                         className="text-gray-400 hover:text-brand-gold transition-colors text-sm"
                                     >
                                         {link.label}
@@ -129,7 +132,7 @@ export default function Footer() {
                             {footerLinks.countries.map((link, idx) => (
                                 <li key={idx}>
                                     <Link
-                                        to={link.href}
+                                        to={lp(link.href)}
                                         className="text-gray-400 hover:text-brand-gold transition-colors text-sm"
                                     >
                                         {link.label}
@@ -146,7 +149,7 @@ export default function Footer() {
                             {footerLinks.company.map((link, idx) => (
                                 <li key={idx}>
                                     <Link
-                                        to={link.href}
+                                        to={lp(link.href)}
                                         className="text-gray-400 hover:text-brand-gold transition-colors text-sm"
                                     >
                                         {link.label}
@@ -188,7 +191,7 @@ export default function Footer() {
                             {footerLinks.legal.map((link, idx) => (
                                 <Link
                                     key={idx}
-                                    to={link.href}
+                                    to={lp(link.href)}
                                     className="text-gray-500 hover:text-gray-400 transition-colors text-sm"
                                 >
                                     {link.label}

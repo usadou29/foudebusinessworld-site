@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 
@@ -9,10 +9,10 @@ const navItems = [
         label: 'Services', 
         href: '/services',
         children: [
-            { label: 'Création société', href: '/services/company' },
-            { label: 'Sourcing Chine', href: '/services/sourcing' },
-            { label: 'Canton Fair', href: '/services/canton' },
-            { label: 'E-commerce', href: '/services/ecommerce' },
+            { label: 'Création société', href: '/services' },
+            { label: 'Sourcing Chine', href: '/services' },
+            { label: 'Canton Fair', href: '/services' },
+            { label: 'E-commerce', href: '/services' },
         ]
     },
     { label: 'Pays', href: '/countries' },
@@ -23,9 +23,13 @@ const navItems = [
 
 export default function Header() {
     const { i18n } = useTranslation();
+    const { lang } = useParams();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+    const currentLang = lang || 'fr';
+    const lp = (path: string) => `/${currentLang}${path}`;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -49,7 +53,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-3 group">
+                    <Link to={lp('/')} className="flex items-center gap-3 group">
                         <img
                             src="/assets/logo.png"
                             alt="FouDeBusinessWorld"
@@ -70,7 +74,7 @@ export default function Header() {
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
                                 <Link
-                                    to={item.href}
+                                    to={lp(item.href)}
                                     className="px-4 py-2 text-sm text-white/80 hover:text-white transition-colors rounded-sm hover:bg-white/5"
                                 >
                                     <span className="flex items-center gap-1">
@@ -85,7 +89,7 @@ export default function Header() {
                                         {item.children.map((child) => (
                                             <Link
                                                 key={child.label}
-                                                to={child.href}
+                                                to={lp(child.href)}
                                                 className="block px-4 py-3 text-sm text-white/80 hover:text-white hover:bg-white/5 transition-colors"
                                             >
                                                 {child.label}
@@ -110,7 +114,7 @@ export default function Header() {
 
                         {/* CTA Button */}
                         <Link
-                            to="/contact"
+                            to={lp('/contact')}
                             className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 premium-gradient text-black text-sm font-semibold rounded-sm hover:shadow-gold transition-all"
                         >
                             Réserver un appel
@@ -134,7 +138,7 @@ export default function Header() {
                         {navItems.map((item) => (
                             <div key={item.label}>
                                 <Link
-                                    to={item.href}
+                                    to={lp(item.href)}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
                                 >
@@ -145,7 +149,7 @@ export default function Header() {
                                         {item.children.map((child) => (
                                             <Link
                                                 key={child.label}
-                                                to={child.href}
+                                                to={lp(child.href)}
                                                 onClick={() => setIsMobileMenuOpen(false)}
                                                 className="block px-4 py-2 text-sm text-white/60 hover:text-white transition-colors"
                                             >
@@ -158,7 +162,7 @@ export default function Header() {
                         ))}
                         <div className="pt-4 border-t border-white/10">
                             <Link
-                                to="/contact"
+                                to={lp('/contact')}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="block w-full text-center px-4 py-3 premium-gradient text-black font-semibold rounded-sm"
                             >
