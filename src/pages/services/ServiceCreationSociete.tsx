@@ -1,366 +1,162 @@
-import { Link, useParams } from 'react-router-dom';
-import Section from '../../components/ui/Section';
-import Container from '../../components/ui/Container';
-import SEOHead from '../../components/SEOHead';
-import { Building2, CheckCircle, ArrowRight, Shield, FileText, Globe, Star } from 'lucide-react';
+import { Building2, Globe, FileText, Users, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const features = [
+  {
+    icon: Globe,
+    title: 'Juridictions multiples',
+    description: 'Dubaï, Hong Kong, Géorgie et plus encore.',
+  },
+  {
+    icon: FileText,
+    title: 'Documents complets',
+    description: 'Tous les documents légaux préparés et déposés.',
+  },
+  {
+    icon: Users,
+    title: 'Accompagnement dédié',
+    description: 'Un expert vous guide à chaque étape.',
+  },
+  {
+    icon: Building2,
+    title: 'Domiciliation',
+    description: 'Adresse professionnelle incluse.',
+  },
+]
+
+const steps = [
+  {
+    number: '01',
+    title: 'Consultation',
+    description: 'Nous analysons vos besoins et vous recommandons la meilleure juridiction.',
+  },
+  {
+    number: '02',
+    title: 'Préparation',
+    description: 'Nous préparons tous les documents nécessaires et vérifions la disponibilité du nom.',
+  },
+  {
+    number: '03',
+    title: 'Enregistrement',
+    description: 'Nous déposons votre dossier auprès des autorités compétentes.',
+  },
+  {
+    number: '04',
+    title: 'Finalisation',
+    description: 'Vous recevez vos documents et pouvez commencer votre activité.',
+  },
+]
+
+const destinations = [
+  {
+    flag: '🇦🇪',
+    name: 'Dubaï',
+    price: 'à partir de 3 500 €',
+    path: '/fr/pays/dubai',
+  },
+  {
+    flag: '🇭🇰',
+    name: 'Hong Kong',
+    price: 'à partir de 3 000 €',
+    path: '/fr/pays/hong-kong',
+  },
+  {
+    flag: '🇬🇪',
+    name: 'Géorgie',
+    price: 'à partir de 2 500 €',
+    path: '/fr/pays/georgie',
+  },
+]
 
 export default function ServiceCreationSociete() {
-  const { lang } = useParams();
-  const currentLang = lang || 'fr';
-  const lp = (path: string) => `/${currentLang}${path}`;
-  const isFr = currentLang === 'fr';
-
-  const features = isFr ? [
-    'Analyse de votre projet et choix de juridiction',
-    'Création société Freezone ou Mainland',
-    'Ouverture compte bancaire corporate',
-    'Obtention visas investisseur/résidence',
-    'Conformité fiscale et reporting',
-    'Support juridique continu 12 mois'
-  ] : [
-    'Project analysis and jurisdiction choice',
-    'Freezone or Mainland company formation',
-    'Corporate bank account opening',
-    'Investor/residency visas',
-    'Tax compliance and reporting',
-    '12-month ongoing legal support'
-  ];
-
-  // 3 packs par pays
-  const packsDubai = [
-    {
-      name: isFr ? 'Dubaï Freezone Starter' : 'Dubai Freezone Starter',
-      price: '2 500 €',
-      description: isFr ? 'Pour démarrer rapidement à Dubaï' : 'To start quickly in Dubai',
-      features: isFr ? [
-        'Création société Freezone',
-        'Licence commerciale',
-        '1 visa investisseur',
-        'Support email 30 jours'
-      ] : [
-        'Freezone company formation',
-        'Commercial license',
-        '1 investor visa',
-        '30-day email support'
-      ]
-    },
-    {
-      name: isFr ? 'Dubaï Freezone Business' : 'Dubai Freezone Business',
-      price: '5 500 €',
-      description: isFr ? 'La solution complète pour Dubaï' : 'Complete solution for Dubai',
-      features: isFr ? [
-        'Création société Freezone',
-        'Licence commerciale',
-        '2 visas investisseur',
-        'Ouverture compte bancaire',
-        'Support prioritaire 6 mois'
-      ] : [
-        'Freezone company formation',
-        'Commercial license',
-        '2 investor visas',
-        'Bank account opening',
-        '6-month priority support'
-      ],
-      popular: true
-    },
-    {
-      name: isFr ? 'Dubaï Mainland Premium' : 'Dubai Mainland Premium',
-      price: '9 900 €',
-      description: isFr ? 'Accompagnement stratégique complet' : 'Complete strategic support',
-      features: isFr ? [
-        'Création société Mainland',
-        'Licence commerciale premium',
-        '3 visas + famille',
-        'Banking premium (Stripe, Wise)',
-        'Support dédié 12 mois',
-        'Accès Club Privé'
-      ] : [
-        'Mainland company formation',
-        'Premium commercial license',
-        '3 visas + family',
-        'Premium banking (Stripe, Wise)',
-        '12-month dedicated support',
-        'Private Club Access'
-      ]
-    }
-  ];
-
-  const packsHK = [
-    {
-      name: isFr ? 'Hong Kong Starter' : 'Hong Kong Starter',
-      price: '1 800 €',
-      description: isFr ? 'Entrée de gamme pour l\'Asie' : 'Entry level for Asia',
-      features: isFr ? [
-        'Création société HK',
-        'Secrétariat sociétaire 1 an',
-        'Adresse commerciale',
-        'Support email'
-      ] : [
-        'HK company formation',
-        'Company secretary 1 year',
-        'Business address',
-        'Email support'
-      ]
-    },
-    {
-      name: isFr ? 'Hong Kong Business' : 'Hong Kong Business',
-      price: '3 500 €',
-      description: isFr ? 'Solution complète Hong Kong' : 'Complete Hong Kong solution',
-      features: isFr ? [
-        'Création société HK',
-        'Secrétariat + Comptabilité',
-        'Adresse premium',
-        'Compte bancaire offshore',
-        'Support 6 mois'
-      ] : [
-        'HK company formation',
-        'Secretary + Accounting',
-        'Premium address',
-        'Offshore bank account',
-        '6-month support'
-      ],
-      popular: true
-    },
-    {
-      name: isFr ? 'Hong Kong Premium' : 'Hong Kong Premium',
-      price: '6 900 €',
-      description: isFr ? 'Structure holding avancée' : 'Advanced holding structure',
-      features: isFr ? [
-        'Structure holding',
-        'Multi-sociétés',
-        'Banking premium',
-        'Optimisation fiscale',
-        'Support 12 mois',
-        'Accès Club Privé'
-      ] : [
-        'Holding structure',
-        'Multi-companies',
-        'Premium banking',
-        'Tax optimization',
-        '12-month support',
-        'Private Club Access'
-      ]
-    }
-  ];
-
-  const packsGeorgia = [
-    {
-      name: isFr ? 'Géorgie Starter' : 'Georgia Starter',
-      price: '900 €',
-      description: isFr ? 'Solution low-cost Europe' : 'Low-cost Europe solution',
-      features: isFr ? [
-        'Création société LLC',
-        'Enregistrement TVA',
-        'Adresse légale',
-        'Support email'
-      ] : [
-        'LLC company formation',
-        'VAT registration',
-        'Legal address',
-        'Email support'
-      ]
-    },
-    {
-      name: isFr ? 'Géorgie Business' : 'Georgia Business',
-      price: '1 800 €',
-      description: isFr ? 'Pack complet Géorgie' : 'Complete Georgia pack',
-      features: isFr ? [
-        'Création société LLC',
-        'TVA + Comptabilité',
-        'Compte bancaire local',
-        'Résidence temporaire',
-        'Support 6 mois'
-      ] : [
-        'LLC company formation',
-        'VAT + Accounting',
-        'Local bank account',
-        'Temporary residency',
-        '6-month support'
-      ],
-      popular: true
-    },
-    {
-      name: isFr ? 'Géorgie Premium' : 'Georgia Premium',
-      price: '3 500 €',
-      description: isFr ? 'Résidence permanente incluse' : 'Permanent residency included',
-      features: isFr ? [
-        'Multi-sociétés',
-        'Résidence permanente',
-        'Comptes multi-devises',
-        'Optimisation complète',
-        'Support 12 mois',
-        'Accès Club Privé'
-      ] : [
-        'Multi-companies',
-        'Permanent residency',
-        'Multi-currency accounts',
-        'Full optimization',
-        '12-month support',
-        'Private Club Access'
-      ]
-    }
-  ];
-
-  const renderPack = (pack: typeof packsDubai[0]) => (
-    <div
-      key={pack.name}
-      className={`glass rounded-2xl p-6 border transition-all duration-300 ${
-        pack.popular
-          ? 'border-brand-gold/50 scale-105 shadow-gold'
-          : 'border-white/10 hover:border-brand-gold/30'
-      }`}
-    >
-      {pack.popular && (
-        <span className="inline-flex items-center gap-1 px-3 py-1 bg-brand-gold text-black text-xs font-bold uppercase tracking-wider rounded mb-4">
-          <Star className="w-3 h-3" />
-          {isFr ? 'Populaire' : 'Popular'}
-        </span>
-      )}
-      <h3 className="text-lg font-bold text-white mb-2">{pack.name}</h3>
-      <div className="text-3xl font-serif text-brand-gold mb-2">{pack.price}</div>
-      <p className="text-gray-400 text-sm mb-6">{pack.description}</p>
-      <ul className="space-y-3 mb-6">
-        {pack.features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
-            <CheckCircle className="h-4 w-4 text-brand-gold shrink-0 mt-0.5" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-      <Link
-        to={lp('/contact')}
-        className={`block w-full text-center px-6 py-3 rounded-sm font-semibold transition-all ${
-          pack.popular
-            ? 'premium-gradient text-black hover:shadow-gold'
-            : 'border border-white/20 text-white hover:bg-white/5'
-        }`}
-      >
-        {isFr ? 'Choisir' : 'Select'}
-      </Link>
-    </div>
-  );
-
   return (
-    <>
-      <SEOHead
-        title={isFr ? "Création de Société | FouDeBusinessWorld" : "Company Formation | FouDeBusinessWorld"}
-        description={isFr
-          ? "Créez votre société à Dubaï, Hong Kong ou Géorgie. Accompagnement complet de la création à la banque."
-          : "Create your company in Dubai, Hong Kong or Georgia. Complete support from formation to banking."}
-      />
-
-      {/* Hero */}
-      <section className="section-hero relative pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-dark/95 to-black"></div>
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block px-4 py-2 bg-brand-gold/10 border border-brand-gold/20 text-brand-gold rounded text-sm font-bold uppercase tracking-wider mb-6">
-              {isFr ? 'Services' : 'Services'}
-            </span>
-            <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">
-              {isFr ? 'Création de Société' : 'Company Formation'}
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              {isFr
-                ? 'Structurez votre activité internationale dans les meilleures juridictions. De la création à la banque, nous vous accompagnons à chaque étape.'
-                : 'Structure your international business in the best jurisdictions. From formation to banking, we support you at every step.'}
-            </p>
+    <div className="animate-fade-in py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="w-20 h-20 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Building2 className="w-10 h-10 text-primary-600" />
           </div>
-        </Container>
-      </section>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
+            Création de <span className="text-gradient">société offshore</span>
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Nous vous accompagnons dans la création de votre entreprise à l'étranger. 
+            Profitez d'une fiscalité optimisée et d'une structure internationale solide.
+          </p>
+        </div>
 
-      {/* Features */}
-      <Section className="bg-black">
-        <Container>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            {[
-              { icon: Globe, title: isFr ? 'Multi-juridictions' : 'Multi-jurisdictions', desc: isFr ? 'Dubaï, Hong Kong, Géorgie' : 'Dubai, Hong Kong, Georgia' },
-              { icon: Shield, title: isFr ? 'Conformité garantie' : 'Guaranteed compliance', desc: isFr ? 'Structures 100% légales' : '100% legal structures' },
-              { icon: FileText, title: isFr ? 'Documentation' : 'Documentation', desc: isFr ? 'Tous documents inclus' : 'All documents included' },
-              { icon: Building2, title: isFr ? 'Banking' : 'Banking', desc: isFr ? 'Ouverture comptes corporate' : 'Corporate account opening' },
-              { icon: CheckCircle, title: isFr ? 'Visas' : 'Visas', desc: isFr ? 'Résidence investisseur' : 'Investor residency' },
-              { icon: Star, title: isFr ? 'Support premium' : 'Premium support', desc: isFr ? 'Accompagnement dédié' : 'Dedicated support' }
-            ].map((item, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 rounded-xl bg-brand-surface border border-white/5">
-                <div className="w-12 h-12 rounded-lg bg-brand-gold/10 flex items-center justify-center shrink-0">
-                  <item.icon className="w-6 h-6 text-brand-gold" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium mb-1">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
+        {/* Features */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {features.map((feature) => (
+            <div key={feature.title} className="card p-6 text-center">
+              <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <feature.icon className="w-7 h-7 text-primary-600" />
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
+              <p className="text-sm text-slate-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Destinations */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">
+            Nos <span className="text-gradient-gold">destinations</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {destinations.map((dest) => (
+              <Link
+                key={dest.name}
+                to={dest.path}
+                className="card p-8 text-center group hover:border-primary-300 transition-all"
+              >
+                <span className="text-5xl mb-4 block">{dest.flag}</span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{dest.name}</h3>
+                <p className="text-slate-600 mb-4">{dest.price}</p>
+                <span className="text-primary-600 font-medium inline-flex items-center group-hover:gap-2 transition-all">
+                  Voir les détails <ArrowRight className="w-4 h-4 ml-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Process */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">
+            Notre <span className="text-gradient">processus</span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((step) => (
+              <div key={step.number} className="relative">
+                <div className="card p-6 h-full">
+                  <span className="text-4xl font-bold text-primary-200">{step.number}</span>
+                  <h3 className="text-lg font-bold text-slate-900 mt-4 mb-2">{step.title}</h3>
+                  <p className="text-slate-600 text-sm">{step.description}</p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Dubai Packs */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <span className="text-4xl mb-4 block">🇦🇪</span>
-              <h2 className="font-serif text-4xl text-white mb-4">Dubaï</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                {isFr 
-                  ? '0% d\'impôt sur le revenu, accès aux marchés MENA, infrastructure world-class'
-                  : '0% income tax, MENA market access, world-class infrastructure'}
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {packsDubai.map(renderPack)}
-            </div>
-          </div>
-
-          {/* Hong Kong Packs */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <span className="text-4xl mb-4 block">🇭🇰</span>
-              <h2 className="font-serif text-4xl text-white mb-4">Hong Kong</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                {isFr 
-                  ? 'Porte d\'entrée vers la Chine, fiscalité attractive, réputation internationale'
-                  : 'Gateway to China, attractive taxation, international reputation'}
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {packsHK.map(renderPack)}
-            </div>
-          </div>
-
-          {/* Georgia Packs */}
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <span className="text-4xl mb-4 block">🇬🇪</span>
-              <h2 className="font-serif text-4xl text-white mb-4">Géorgie</h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                {isFr 
-                  ? 'Solution low-cost en Europe, fiscalité ultra-compétitive, création rapide'
-                  : 'Low-cost solution in Europe, ultra-competitive taxation, fast setup'}
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {packsGeorgia.map(renderPack)}
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="glass rounded-2xl p-8 md:p-12 border border-brand-gold/20 text-center">
-            <h2 className="font-serif text-3xl text-white mb-4">
-              {isFr ? 'Besoin de conseils ?' : 'Need advice?'}
-            </h2>
-            <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-              {isFr
-                ? 'Chaque projet est unique. Discutons de la meilleure structure pour votre activité.'
-                : 'Every project is unique. Let\'s discuss the best structure for your business.'}
-            </p>
-            <Link
-              to={lp('/appel')}
-              className="inline-flex items-center gap-2 px-8 py-4 premium-gradient text-black font-semibold rounded-sm hover:shadow-gold transition-all"
-            >
-              {isFr ? 'Appel stratégique gratuit' : 'Free strategy call'}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </Container>
-      </Section>
-    </>
-  );
+        {/* CTA */}
+        <div className="card p-12 text-center bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+          <h2 className="text-3xl font-bold mb-4">
+            Prêt à créer votre société ?
+          </h2>
+          <p className="text-primary-100 mb-8 max-w-2xl mx-auto">
+            Contactez-nous pour une consultation gratuite et découvrez quelle juridiction 
+            correspond le mieux à votre activité.
+          </p>
+          <Link
+            to="/fr/contact"
+            className="inline-block bg-white text-primary-700 font-semibold px-8 py-4 rounded-lg hover:bg-primary-50 transition-colors shadow-lg"
+          >
+            Demander un devis gratuit
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
 }

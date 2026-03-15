@@ -1,230 +1,230 @@
-import { Link, useParams } from 'react-router-dom';
-import Section from '../../components/ui/Section';
-import Container from '../../components/ui/Container';
-import SEOHead from '../../components/SEOHead';
-import { Calendar, Users, Plane, Hotel, CheckCircle, ArrowRight, MapPin, Star } from 'lucide-react';
+import { Check, Plane, MapPin, Users, Calendar, Star, Building2, Utensils } from 'lucide-react'
+
+const features = [
+  {
+    icon: MapPin,
+    title: 'Accompagnement sur place',
+    description: 'Notre équipe vous guide pendant tout le salon.',
+  },
+  {
+    icon: Users,
+    title: 'Networking',
+    description: 'Rencontrez des fournisseurs vérifiés.',
+  },
+  {
+    icon: Building2,
+    title: 'Visites d\'usines',
+    description: 'Déplacements organisés après le salon.',
+  },
+  {
+    icon: Utensils,
+    title: 'Logistique complète',
+    description: 'Hébergement et repas inclus.',
+  },
+]
+
+const plans = [
+  {
+    name: 'Découverte',
+    price: '2 500',
+    description: 'Votre premier Canton Fair accompagné',
+    features: [
+      'Billet d\'avion A/R',
+      'Hôtel 3 étoiles (5 nuits)',
+      'Transferts aéroport',
+      'Accompagnement 2 jours salon',
+      'Guide francophone',
+      'Petit-déjeuner inclus',
+    ],
+    cta: 'Réserver',
+    featured: false,
+  },
+  {
+    name: 'Business',
+    price: '4 500',
+    description: 'Expérience complète pour professionnels',
+    features: [
+      'Billet d\'avion A/R',
+      'Hôtel 4 étoiles (7 nuits)',
+      'Transferts privés',
+      'Accompagnement 4 jours salon',
+      'Guide francophone dédié',
+      'Repas inclus',
+      'Visite de 2 usines',
+      'Support négociation',
+    ],
+    cta: 'Choisir Business',
+    featured: true,
+  },
+  {
+    name: 'VIP',
+    price: '7 500',
+    description: 'Expérience premium sur mesure',
+    features: [
+      'Billet d\'avion business A/R',
+      'Hôtel 5 étoiles (10 nuits)',
+      'Chauffeur privé',
+      'Accompagnement illimité salon',
+      'Expert sourcing dédié',
+      'Tous repas inclus',
+      'Visites usines illimitées',
+      'Négociation avancée',
+      'Dîners networking',
+      'Accès Club Privé',
+    ],
+    cta: 'Nous contacter',
+    featured: false,
+  },
+]
 
 export default function ServiceCantonFair() {
-  const { lang } = useParams();
-  const currentLang = lang || 'fr';
-  const lp = (path: string) => `/${currentLang}${path}`;
-  const isFr = currentLang === 'fr';
-
-  const features = isFr ? [
-    'Accompagnement sur place à Canton',
-    'Programme personnalisé selon votre secteur',
-    'Introduction aux fournisseurs clés',
-    'Négociation en direct avec interprète',
-    'Vérification des usines visitées',
-    'Rapport complet post-salon'
-  ] : [
-    'On-site support in Canton',
-    'Personalized program by sector',
-    'Introduction to key suppliers',
-    'Direct negotiation with interpreter',
-    'Verification of visited factories',
-    'Complete post-fair report'
-  ];
-
-  const programme = isFr ? [
-    { day: 'Jour 1', title: 'Arrivée & Briefing', desc: 'Accueil à l\'aéroport, briefing stratégique et préparation des meetings' },
-    { day: 'Jour 2-4', title: 'Canton Fair', desc: 'Visite du salon avec accompagnement, rencontres fournisseurs pré-sélectionnés' },
-    { day: 'Jour 5', title: 'Visites d\'usines', desc: 'Audit sur place des usines retenues, négociation finale' },
-    { day: 'Jour 6', title: 'Débriefing', desc: 'Analyse des opportunités, plan d\'action, départ' }
-  ] : [
-    { day: 'Day 1', title: 'Arrival & Briefing', desc: 'Airport pickup, strategic briefing and meeting preparation' },
-    { day: 'Day 2-4', title: 'Canton Fair', desc: 'Fair visit with support, pre-selected supplier meetings' },
-    { day: 'Day 5', title: 'Factory Visits', desc: 'On-site audit of selected factories, final negotiation' },
-    { day: 'Day 6', title: 'Debriefing', desc: 'Opportunity analysis, action plan, departure' }
-  ];
-
-  const includes = isFr ? [
-    'Accompagnement expert 6 jours',
-    'Interprète chinois-français',
-    'Transport sur place',
-    'Hôtel 4* en centre-ville',
-    'Pré-sélection fournisseurs',
-    'Rapport complet post-mission'
-  ] : [
-    '6-day expert support',
-    'Chinese-French interpreter',
-    'Local transport',
-    '4* hotel downtown',
-    'Supplier pre-selection',
-    'Complete post-mission report'
-  ];
-
   return (
-    <>
-      <SEOHead
-        title={isFr ? "Canton Fair | FouDeBusinessWorld" : "Canton Fair | FouDeBusinessWorld"}
-        description={isFr
-          ? "Vivez le plus grand salon commercial du monde accompagné. 6 jours pour transformer votre business."
-          : "Experience the world\'s largest trade fair accompanied. 6 days to transform your business."}
-      />
-
-      {/* Hero */}
-      <section className="section-hero relative pt-32 pb-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-dark/95 to-black"></div>
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block px-4 py-2 bg-brand-gold/10 border border-brand-gold/20 text-brand-gold rounded text-sm font-bold uppercase tracking-wider mb-6">
-              {isFr ? 'Mission Exclusive' : 'Exclusive Mission'}
-            </span>
-            <h1 className="font-serif text-5xl md:text-6xl text-white mb-6">
-              Canton Fair
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              {isFr
-                ? 'Le plus grand salon commercial du monde. 6 jours accompagnés pour trouver vos fournisseurs et négocier vos contrats.'
-                : 'The world\'s largest trade fair. 6 accompanied days to find your suppliers and negotiate your contracts.'}
-            </p>
-            <div className="flex items-center justify-center gap-8 text-gray-400">
-              <span className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-brand-gold" />
-                {isFr ? '6 jours' : '6 days'}
-              </span>
-              <span className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-brand-gold" />
-                Guangzhou, Chine
-              </span>
-              <span className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-brand-gold" />
-                {isFr ? 'Petit groupe' : 'Small group'}
-              </span>
-            </div>
+    <div className="animate-fade-in py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="w-20 h-20 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Plane className="w-10 h-10 text-primary-600" />
           </div>
-        </Container>
-      </section>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
+            Canton Fair <span className="text-gradient">Accompagnement</span>
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Participez au plus grand salon commercial de Chine avec notre accompagnement expert. 
+            Nous gérons tout pour que vous puissiez vous concentrer sur vos affaires.
+          </p>
+        </div>
 
-      {/* Price Hero */}
-      <Section className="bg-black">
-        <Container>
-          <div className="glass rounded-3xl p-8 md:p-16 border border-brand-gold/30 text-center mb-20 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/5 to-transparent"></div>
-            <div className="relative z-10">
-              <span className="inline-block px-4 py-2 bg-brand-gold/20 text-brand-gold rounded text-sm font-bold uppercase tracking-wider mb-6">
-                {isFr ? 'Prix Mission' : 'Mission Price'}
-              </span>
-              <div className="text-6xl md:text-7xl font-serif text-brand-gold mb-4">10 000 €</div>
-              <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-                {isFr 
-                  ? 'Tout inclus sauf vols internationaux. Repartez avec des fournisseurs validés et des contrats négociés.'
-                  : 'All inclusive except international flights. Leave with validated suppliers and negotiated contracts.'}
+        {/* Features */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {features.map((feature) => (
+            <div key={feature.title} className="card p-6 text-center">
+              <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <feature.icon className="w-7 h-7 text-primary-600" />
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
+              <p className="text-sm text-slate-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* About Canton Fair */}
+        <div className="card p-8 mb-16">
+          <div className="flex flex-col lg:flex-row gap-8 items-center">
+            <div className="lg:w-1/2">
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                Qu'est-ce que le Canton Fair ?
+              </h2>
+              <p className="text-slate-600 mb-4">
+                Le Canton Fair (Foire de Canton) est le plus grand salon commercial de Chine, 
+                se tenant deux fois par an à Guangzhou. C'est l'événement incontournable pour 
+                tous les importateurs souhaitant trouver des fournisseurs fiables.
               </p>
-              <Link
-                to={lp('/contact')}
-                className="inline-flex items-center gap-2 px-10 py-5 premium-gradient text-black font-bold text-lg rounded-sm hover:shadow-gold transition-all"
-              >
-                {isFr ? 'Réserver ma place' : 'Book my spot'}
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              <ul className="space-y-2 text-slate-600">
+                <li className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary-500" />
+                  <span>Édition de printemps : Avril-Mai</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary-500" />
+                  <span>Édition d'automne : Octobre-Novembre</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building2 className="w-4 h-4 text-primary-500" />
+                  <span>Plus de 25 000 exposants</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Star className="w-4 h-4 text-primary-500" />
+                  <span>150 000+ visiteurs internationaux</span>
+                </li>
+              </ul>
+            </div>
+            <div className="lg:w-1/2">
+              <div className="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl p-8 text-white">
+                <h3 className="text-xl font-bold mb-4">Pourquoi venir accompagné ?</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>Évitez les arnaques et les intermédiaires</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>Négociez avec l'aide d'experts francophones</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>Visitez des usines vérifiées après le salon</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>Gagnez un temps précieux grâce à l'organisation</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Features */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            {[
-              { icon: Plane, title: isFr ? 'Accompagnement' : 'Support', desc: isFr ? 'Expert avec vous 6 jours' : 'Expert with you 6 days' },
-              { icon: Users, title: isFr ? 'Interprète' : 'Interpreter', desc: isFr ? 'Chinois-Français dédié' : 'Dedicated Chinese-French' },
-              { icon: Hotel, title: isFr ? 'Hébergement' : 'Accommodation', desc: isFr ? 'Hôtel 4* centre-ville' : '4* downtown hotel' },
-              { icon: Calendar, title: isFr ? 'Programme' : 'Program', desc: isFr ? 'Sur mesure par secteur' : 'Customized by sector' },
-              { icon: MapPin, title: isFr ? 'Logistique' : 'Logistics', desc: isFr ? 'Transport inclus' : 'Transport included' },
-              { icon: CheckCircle, title: isFr ? 'Résultats' : 'Results', desc: isFr ? 'Fournisseurs validés' : 'Validated suppliers' }
-            ].map((item, index) => (
-              <div key={index} className="flex items-start gap-4 p-6 rounded-xl bg-brand-surface border border-white/5">
-                <div className="w-12 h-12 rounded-lg bg-brand-gold/10 flex items-center justify-center shrink-0">
-                  <item.icon className="w-6 h-6 text-brand-gold" />
-                </div>
-                <div>
-                  <h3 className="text-white font-medium mb-1">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
-                </div>
+        {/* Tarifs */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-4">
+            Nos <span className="text-gradient-gold">forfaits</span>
+          </h2>
+          <p className="text-center text-slate-600 max-w-2xl mx-auto">
+            Tout est inclus pour une expérience sans stress. Choisissez votre niveau de confort.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`price-card p-8 ${plan.featured ? 'featured' : ''}`}
+            >
+              <h3 className="text-xl font-bold text-slate-900 mb-2">{plan.name}</h3>
+              <p className="text-slate-600 text-sm mb-6">{plan.description}</p>
+              
+              <div className="mb-6">
+                <span className="text-4xl font-bold text-slate-900">{plan.price} €</span>
+                <span className="text-slate-500"> / personne</span>
               </div>
-            ))}
-          </div>
 
-          {/* Programme */}
-          <div className="mb-20">
-            <h2 className="font-serif text-4xl text-white mb-12 text-center">
-              {isFr ? 'Programme de la Mission' : 'Mission Program'}
-            </h2>
-            <div className="space-y-6 max-w-4xl mx-auto">
-              {programme.map((day, index) => (
-                <div key={index} className="glass rounded-xl p-6 border border-white/10 flex gap-6">
-                  <div className="w-20 shrink-0">
-                    <span className="inline-block px-3 py-1 bg-brand-gold/10 text-brand-gold text-sm font-bold rounded">
-                      {day.day}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2">{day.title}</h3>
-                    <p className="text-gray-400">{day.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Includes */}
-          <div className="glass rounded-2xl p-8 md:p-12 border border-white/10 mb-20">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="font-serif text-3xl text-white mb-6">
-                  {isFr ? 'Ce qui est inclus' : 'What\'s included'}
-                </h2>
-                <p className="text-gray-400 mb-8">
-                  {isFr
-                    ? 'Une mission clé en main pour maximiser votre temps et vos résultats au Canton Fair.'
-                    : 'A turnkey mission to maximize your time and results at the Canton Fair.'}
-                </p>
-                <Link
-                  to={lp('/appel')}
-                  className="inline-flex items-center gap-2 px-8 py-4 premium-gradient text-black font-semibold rounded-sm hover:shadow-gold transition-all"
-                >
-                  {isFr ? 'En savoir plus' : 'Learn more'}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {includes.map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-brand-gold shrink-0" />
-                    <span className="text-gray-300">{item}</span>
-                  </div>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-600 text-sm">{feature}</span>
+                  </li>
                 ))}
-              </div>
-            </div>
-          </div>
+              </ul>
 
-          {/* CTA */}
-          <div className="glass rounded-2xl p-8 md:p-12 border border-brand-gold/20 text-center">
-            <h2 className="font-serif text-3xl text-white mb-4">
-              {isFr ? 'Prochaines sessions' : 'Next sessions'}
-            </h2>
-            <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-              {isFr
-                ? 'Le Canton Fair a lieu 2 fois par an. Réservez votre place pour la prochaine édition.'
-                : 'The Canton Fair takes place twice a year. Book your spot for the next edition.'}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to={lp('/contact')}
-                className="inline-flex items-center gap-2 px-8 py-4 premium-gradient text-black font-semibold rounded-sm hover:shadow-gold transition-all"
+              <button
+                className={`w-full py-3 rounded-lg font-semibold transition-all ${
+                  plan.featured
+                    ? 'bg-gradient-to-r from-gold-500 to-gold-600 text-white hover:shadow-lg'
+                    : 'bg-primary-100 text-primary-700 hover:bg-primary-200'
+                }`}
               >
-                {isFr ? 'Réserver maintenant' : 'Book now'}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to={lp('/appel')}
-                className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-sm hover:bg-white/5 transition-all"
-              >
-                {isFr ? 'Appel d\'information' : 'Info call'}
-              </Link>
+                {plan.cta}
+              </button>
             </div>
-          </div>
-        </Container>
-      </Section>
-    </>
-  );
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="card p-12 text-center bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+          <h2 className="text-3xl font-bold mb-4">
+            Prêt pour le prochain Canton Fair ?
+          </h2>
+          <p className="text-primary-100 mb-8 max-w-2xl mx-auto">
+            Les places sont limitées pour garantir un accompagnement de qualité. 
+            Réservez votre place dès maintenant.
+          </p>
+          <button className="inline-block bg-white text-primary-700 font-semibold px-8 py-4 rounded-lg hover:bg-primary-50 transition-colors shadow-lg">
+            Vérifier les disponibilités
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
