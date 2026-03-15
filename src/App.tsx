@@ -14,6 +14,11 @@ import Contact from './pages/Contact';
 import Services from './pages/Services';
 import Programs from './pages/Programs';
 
+// Pays pages
+import PaysDubai from './pages/PaysDubai';
+import PaysHongKong from './pages/PaysHongKong';
+import PaysGeorgie from './pages/PaysGeorgie';
+
 // Auth & Dashboard
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -54,6 +59,11 @@ function App() {
               <Route path="why-us" element={<WhyUs />} />
               <Route path="countries" element={<CountryHub />} />
               <Route path="countries/:slug" element={<CountryDetail />} />
+
+              {/* Pays Routes */}
+              <Route path="pays/dubai" element={<PaysDubai />} />
+              <Route path="pays/hong-kong" element={<PaysHongKong />} />
+              <Route path="pays/georgie" element={<PaysGeorgie />} />
 
               <Route path="services" element={<Services />} />
               <Route path="programs" element={<Programs />} />
